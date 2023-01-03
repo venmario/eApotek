@@ -9,31 +9,31 @@
         {{ session('status') }}
     </div>
     @endif
-    <a href="{{ route('category.create') }}" class="btn btn-primary btn-lg">Tambah Kategori</a>
+    <a href="{{ route('supplier.create') }}" class="btn btn-primary btn-lg">Tambah Supplier</a>
     <br><br>
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="table-layout: fixed;">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
-                <th>Deskripsi</th>
+                <th>Nama Supplier</th>
+                <th>Alamat</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php $i=1; ?>
-            @foreach ($category as $d)
+            @foreach ($suppliers as $d)
             <tr>
                 <td>{{$i}}</td>
-                <td>{{$d->nama}}</td>
-                <td>{{$d->deskripsi}}</td>
+                <td>{{$d->fullname}}</td>
+                <td>{{$d->alamat}}</td>
                 <td class="d-flex justify-content-center">
-                    <a href="{{ route('category.edit',$d->id) }}" class="btn btn-warning">Edit</a>&nbsp&nbsp
-                    <form method="post" action="{{route('category.destroy', $d->id)}}">
+                    <a href="{{ route('supplier.edit',$d->id) }}" class="btn btn-warning">Edit</a>&nbsp&nbsp
+                    <form method="post" action="{{route('supplier.destroy', $d->id)}}">
+                        @method('DELETE')
                         @csrf
-                        @method('delete')
                         <button type="submit" class="btn btn-danger btn-lg"
-                            onclick="if(!confirm('Are you sure you want to delete this category?')){return false;}">Delete</button>
+                            onclick="if(!confirm('Are you sure you want to delete this supplier?')){return false;}">Delete</button>
                     </form>
                 </td>
             </tr>

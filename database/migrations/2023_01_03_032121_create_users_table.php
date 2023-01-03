@@ -18,10 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('username',55)->unique();
             $table->string('password',255);
             $table->string('fullname',255);
+            $table->string('alamat')->nullable();
             $table->integer('poin')->default('0');
-            $table->foreignId('roles_id')->constrained('roles');
+            $table->timestamp('poin_terakhir')->nullable();
+            $table->foreignId('roles_id')->default('1')->constrained('roles');
             $table->foreignId('memberships_id')->default('1')->constrained('memberships');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

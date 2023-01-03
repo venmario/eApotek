@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     public function role()
     {
@@ -54,6 +56,28 @@ class User extends Authenticatable
         $user->poin = $poin_sekarang;
         $user->memberships_id = $membership_id;
         $user->save();
+    }
+
+    public function resetPoin($id)
+    {
+        $bulansekarang = date('m');
+        $tahunsekarang = date('y');
+
+        $user = User::find($id);
+        $tanggal_poin_terakhir = $user->poin_terakhir;
+        $bulanterakhir = date("m",strtotime($tanggal_poin_terakhir));
+        $tahunterakhir = date("y",strtotime($tanggal_poin_terakhir));
+
+        if ($tahunterakhir != $tahunsekarang) {
+            $user->poin = 0;
+            $user->save();
+        }
+        else{
+            if ($bulanterakhir != $bulansekarang) {
+                $user->poin = 0;
+                $user->save();
+            }
+        }
     }
     /**
      * The attributes that are mass assignable.

@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('image',255)->nullable();
             $table->integer('harga');
             $table->timestamps();
+            $table->softDeletes();
             $table->foreignId('suppliers_id')->constrained('users');
             $table->foreignId('categories_id')->constrained('categories');
         });

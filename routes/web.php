@@ -22,7 +22,7 @@ Route::resource('product', 'ProductController');
 
 // akses route yang membutuhkan autentikasi
 Route::middleware(['auth'])->group(function () {
-    Route::get('supplier','ProductController@supplierindex')->name('index.suppliers');
+    Route::get('supplierindex','ProductController@supplierindex')->name('index.suppliers');
 
     Route::get('membership','UserController@membership')->name('user.membership');
 
@@ -37,5 +37,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('rekapitulasi-pembelian','UserController@rekapPembelian')->name('rekapPembelian');
     Route::get('rekapitulasi-pembelian-detail/{id}','UserController@rekapPembelianDetail')->name('rekapPembelianDetail');
     Route::get('rekapitulasi-poin','UserController@rekapPoin')->name('rekapPoin');
+
+    Route::resource('supplier','SupplierController');
+    Route::resource('adminproduct','AdminProductController');
+
 });
 Auth::routes();

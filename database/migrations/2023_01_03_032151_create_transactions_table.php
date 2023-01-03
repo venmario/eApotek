@@ -15,10 +15,11 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('total_poin');
-            $table->double('total_harga');
+            $table->integer('total_poin')->nullable();
+            $table->double('total_harga')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

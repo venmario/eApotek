@@ -18,6 +18,11 @@ class ProductController extends Controller
     public function index()
     {
         //
+        if (Auth::user() && Auth::user()->roles_id == 1) {
+            $resetpoin = new User();
+            $resetpoin->resetPoin(Auth::user()->id);
+        }
+
         $products = Product::all();
         return view('product.index', compact('products'));
     }

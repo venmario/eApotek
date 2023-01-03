@@ -44,17 +44,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="sebagai"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Sebagai') }}</label>
-
-                            <div class="col-md-6">
-                                <select class="form-control" id="roleSelect" name="role">
-                                    <option value="1">Member</option>
-                                    <option value="2">Supplier</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="password"

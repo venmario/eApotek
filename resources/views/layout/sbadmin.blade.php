@@ -32,10 +32,6 @@
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i>
                     @if(Auth::user()){{Auth::user()->fullname}}@else Login/Register @endif</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    @if (Auth::user() && Auth::user()->role->name=='Admin')
-                    <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register Pegawai') }}</a>
-                    <a class="dropdown-item" href="{{ url('user') }}">{{ __('Manage Pegawai') }}</a>
-                    @endif
 
                     @if (Auth::user())
                     @can('checkmember')
@@ -76,6 +72,16 @@
                             Kategori
                         </a>
                         @endcan
+                        @can('admin-permission')
+                        <a class="nav-link" href="{{route('supplier.index')}}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            Daftar Supplier
+                        </a>
+                        <a class="nav-link" href="{{route('adminproduct.index')}}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            Daftar Obat
+                        </a>
+                        @endcan
 
                         <div class="sb-sidenav-menu-heading">Addons</div>
                         @can('checkmember')
@@ -97,7 +103,7 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as: @if(Auth::user()){{Auth::user()->role->name}}@endif</div>
+                    <div class="small">Logged in as: @if(Auth::user()){{Auth::user()->role->nama}}@endif</div>
                 </div>
             </nav>
         </div>

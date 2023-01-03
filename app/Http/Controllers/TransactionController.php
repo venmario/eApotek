@@ -112,8 +112,12 @@ class TransactionController extends Controller
         // update poin user
         $updatePoin = new User;
         $updatePoin->checkMembershipPoin($user,$hasil[1]);
+        
+        $updatePoinTerakhir = User::where('id',$user->id)->first();
+        $updatePoinTerakhir->poin_terakhir = Carbon::now()->toDateTimeString();
+        $updatePoinTerakhir->save();
 
         session()->forget('cart');
-        return redirect('home');
+        return redirect('home')->with('status','Transaksi berhasil! Anda mendapatkan '.$hasil[1].' poin!');
     }
 }

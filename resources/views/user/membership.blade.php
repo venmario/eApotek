@@ -3,6 +3,7 @@
 <div class="container-fluid mt-4">
     <h1 class="text-center">Membership Page</h1>
     <p>Membership Level : {{ $user->membership->nama }}</p>
+    <p>Total Poin : {{ $user->poin }}</p>
 
     @if ($user->memberships_id == 1)
     <div class="row">

@@ -19,10 +19,20 @@ class UserController extends Controller
         return view('user.membership',compact('user'));
     }
 
-    public function rekapPembelian()
+    public function rekapPembelian(Request $request)
     {
         $this->authorize('admin-permission');
-        $transactions = Transaction::all();
+        if ($request->bulan == null && $request->tahun == null) {
+            $bulan = date('m');
+            $tahun = date('Y');
+        }else{
+            $bulan = $request->bulan;
+            $tahun = $request->tahun;
+        }
+        $transactions = Transaction::whereYear('created_at', '=', $tahun)
+        ->whereMonth('created_at', '=', $bulan)
+        ->get();
+        
         return view('pengelola.rekapPembelian', compact('transactions'));
     }
     public function rekapPembelianDetail($id)

@@ -2,7 +2,9 @@
 @section('content')
 
 <div class="container-fluid mt-4">
-    <h1>Rekap Pembelian</h1>
+    <h1>Rekap Poin
+        {{ Request::get('bulan') == null && Request::get('tahun') == null ? date('M')." ".date("Y") : DateTime::createFromFormat('!m', Request::get('bulan'))->format('F')." ".Request::get('tahun') }}
+    </h1>
     <br><br>
     <form action="" method="get">
         <div class="form-group row">
