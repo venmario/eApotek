@@ -15,8 +15,8 @@
         <h1 class="h1 text-center my-2">Produk Obat</h1>
         <div class="row p-3 justify-content-around">
             @foreach ($products as $product)
-            <div class="col-lg-3">
-                <div class="card mt-3">
+            <div class="col-lg-3 mb-3">
+                <div class="card h-100">
                     <img src="{{ asset('obat') }}/{{$product->image}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h4 class="card-text">{{ $product->nama }}</h4>

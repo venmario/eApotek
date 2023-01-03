@@ -18,12 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('nama',255);
             $table->string('form',255);
             $table->string('restriction_formula',255);
-            $table->string('deskripsi',255);
-            $table->string('image',255);
+            $table->string('deskripsi',255)->nullable();
+            $table->string('image',255)->nullable();
             $table->integer('harga');
+            $table->timestamps();
             $table->foreignId('suppliers_id')->constrained('users');
             $table->foreignId('categories_id')->constrained('categories');
-            $table->timestamps();
         });
     }
 
