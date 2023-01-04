@@ -42,6 +42,7 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request);
         $this->authorize('admin-permission');
         User::create([
             'fullname' => $request->fullname,
@@ -94,7 +95,7 @@ class SupplierController extends Controller
         $user->fullname = $request->fullname;
         $user->username = $request->username;
         $user->alamat = $request->alamat;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('supplier.index')->with('status', 'Supplier berhasil diubah');
     }
