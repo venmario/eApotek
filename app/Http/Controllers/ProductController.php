@@ -129,10 +129,10 @@ class ProductController extends Controller
         $this->authorize('supplier-permission');
         try {
             $product->delete();
-            return redirect()->route('product.indexSupplier')->with('status', 'Obat berhasil dihapus');
+            return redirect()->route('index.suppliers')->with('status', 'Obat berhasil dihapus');
         } catch (\PDOException $e) {
             $msg =  $this->handleAllRemoveChild($product);
-            return redirect()->route('product.indexSupplier')->with('error', $msg);
+            return redirect()->route('index.suppliers')->with('error', $msg);
         }
     }
 
